@@ -2,7 +2,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
 
-console.log('🚀 This is it.');
+console.log('🚀 This is it. hahah');
 
 const MY_FAVORITE_BRANDS = [
   {
@@ -34,7 +34,8 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
-
+const CHEAPEAST_TSHIRT =  "";
+console.log(CHEAPEAST_TSHIRT);
 /**
  * 👕
  * Easy 😁?
@@ -43,21 +44,63 @@ console.log(MY_FAVORITE_BRANDS[0]);
  * The variable is loaded by the file `data.js`
  * 👕
  */
-
+console.log(marketplace);
 // 🎯 TODO 2: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+const numberOfProducts = marketplace.length;
+console.log(numberOfProducts);
 
 // 🎯 TODO 3: Brands name
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
+const brandNames = [];
+for (const product of marketplace){
+  brandNames.push(product.brand);
+}
+console.log(brandNames);
+console.log("On enleve les doubons");
+let uniqueBrandNames = [... new Set(brandNames)];
+console.log(uniqueBrandNames)
+console.log(uniqueBrandNames.length)
+
 
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
 
+function sortPrice(tab) {
+  /*var j=0
+  for (var i = 0; i < tab.length-1; i++) {
+    if (tab[i+1] < tab[i]) {
+         Temp = [tab[i+1],tab[i]]
+         tab[i+1] = tab[1]
+         tab[i] = Temp[0]
+         j += 1
+    }
+    if (i+1 === tab.length-1) {
+      if (j === 0) {
+        break
+      } 
+      else {
+         i -= tab.length-1
+         j = 0
+      }
+    } 
+ }
+ console.log(tab)*/
+ tab.sort();
+};
+
+const priceProduct = [];
+for (const product of marketplace){
+  priceProduct.push(product.price);
+};
+console.log(priceProduct);
+const sortedPriceProduct = sortPrice(priceProduct);
+console.log(sortedPriceProduct);
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
