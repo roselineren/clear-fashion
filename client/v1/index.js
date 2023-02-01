@@ -34,6 +34,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
+console.log("TODO N°1");
 const CHEAPEAST_TSHIRT =  "";
 console.log(CHEAPEAST_TSHIRT);
 /**
@@ -48,6 +49,8 @@ console.log(marketplace);
 // 🎯 TODO 2: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+console.log("TODO N°2");
+
 const numberOfProducts = marketplace.length;
 console.log(numberOfProducts);
 
@@ -59,7 +62,10 @@ const brandNames = [];
 for (const product of marketplace){
   brandNames.push(product.brand);
 }
+console.log("TODO N°3");
+
 console.log(brandNames);
+
 console.log("On enleve les doubons");
 let uniqueBrandNames = [... new Set(brandNames)];
 console.log(uniqueBrandNames)
@@ -72,48 +78,104 @@ console.log(uniqueBrandNames.length)
 // 3. Log the variable
 
 function sortPrice(tab) {
-  /*var j=0
-  for (var i = 0; i < tab.length-1; i++) {
-    if (tab[i+1] < tab[i]) {
-         Temp = [tab[i+1],tab[i]]
-         tab[i+1] = tab[1]
-         tab[i] = Temp[0]
-         j += 1
+  tab.sort(function compare(x,y){
+    return x- y
+  });
+  return(tab);
+};
+
+function sortPrice2(tab) {
+  var Swap = 0;
+  for (var i = 0; i<tab.length-1;i++){
+    if (tab[i+1]<tab[i]){
+      let Temp = [tab[i+1],tab[i]]
+      tab[i+1] = Temp [1]
+      tab[i] = Temp[0]
+      Swap +=1
     }
-    if (i+1 === tab.length-1) {
-      if (j === 0) {
+
+    if (i+1 === tab.length-1){
+      if (Swap === 0) {
         break
-      } 
-      else {
-         i -= tab.length-1
-         j = 0
       }
-    } 
- }
- console.log(tab)*/
- tab.sort();
+      else{
+        i-=tab.length-1
+        Swap=0
+      }
+    }
+  }
+  return tab;
 };
 
 const priceProduct = [];
 for (const product of marketplace){
   priceProduct.push(product.price);
 };
-console.log(priceProduct);
+
+console.log("TODO N°4");
+
 const sortedPriceProduct = sortPrice(priceProduct);
-console.log(sortedPriceProduct);
+console.log(sortedPriceProduct) ;
+console.log("Sans utiliser la fonction sort")
+console.log(sortPrice2(priceProduct)) ;
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
+console.log("TODO N°5");
+
+function sortDate (tab) {
+  var Swap = 0;
+  for (var i = 0; i<tab.length-1;i++){
+    if (tab[i+1]>tab[i]){
+      let Temp = [tab[i+1],tab[i]]
+      tab[i+1] = Temp [1]
+      tab[i] = Temp[0]
+      Swap +=1
+    }
+    if (i+1 === tab.length-1){
+      if (Swap === 0) {
+        break
+      }
+      else{
+        i-=tab.length-1
+        Swap=0
+      }
+    }
+  }
+  return tab;
+}
+
+const dateProduct = [];
+for (const product of marketplace){
+  dateProduct.push(product.released);
+};
+
+console.log("Du plus recent au plus vieux") ;
+console.log(sortDate(dateProduct)) ;
 
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
+console.log("TODO N°6");
+const priceRange = []
+for (const product of marketplace){
+  if (product.price >= 50 && product.price <=100){
+    priceRange.push([product,product.price]);
+  }
+}
+console.log(priceRange);
 
 // 🎯 TODO 7: Average price
 // 1. Determine the average price of the marketplace
 // 2. Log the average
-
+console.log("TODO N°7");
+var sum = 0;
+for (var prod of marketplace){
+  sum+=prod.price;
+}
+const avgPrice = sum/marketplace.length;
+console.log(avgPrice);
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
@@ -136,14 +198,53 @@ console.log(sortedPriceProduct);
 //
 // 2. Log the variable
 // 3. Log the number of products by brands
+console.log("TODO N°8");
+console.log(uniqueBrandNames);
+const panafricaProduct = [];
+const loomProduct = [];
+const hastProduct = [];
+for (const product of marketplace){
+  if(product.brand == 'panafrica'){
+    panafricaProduct.push(product);
+  }
+  else if (product.brand == 'loom'){
+    loomProduct.push(product)
+  }
+  else{
+    hastProduct.push(product);
+  }
+}
+const brands = {
+  panafrica : panafricaProduct,
+  loom : loomProduct,
+  hast : hastProduct,
+}
+console.log(brands);
+console.log("Nombre de produit chez panafrica :");
+console.log(brands.panafrica.length);
+console.log("Nombre de produit chez loom :");
+console.log(brands.loom.length);
+console.log("Nombre de produit chez hast :");
+console.log(brands.hast.length);
 
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
 
+/*brands.panafrica.forEach((produit) => 
+{
+   produit.price.sort(function compare(x,y){
+    return x- y
+  });
+});*/
+console.log(sortDate(brands.panafrica));
+console.log(sortDate(brands.loom));
+
+
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
+console.log("TODO N°10");
 
 /**
  * 💶
@@ -155,7 +256,7 @@ console.log(sortedPriceProduct);
 // 🎯 TODO 11: Compute the p90 price value
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
-
+console.log("TODO N°11");
 /**
  * 🧥
  * Cool for your effort.
