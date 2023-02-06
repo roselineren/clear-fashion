@@ -79,45 +79,15 @@ console.log(uniqueBrandNames.length)
 
 function sortPrice(tab) {
   tab.sort(function compare(x,y){
-    return x- y
+    return x.price > y.price;
   });
   return(tab);
 };
-
-function sortPrice2(tab) {
-  var Swap = 0;
-  for (var i = 0; i<tab.length-1;i++){
-    if (tab[i+1]<tab[i]){
-      let Temp = [tab[i+1],tab[i]]
-      tab[i+1] = Temp [1]
-      tab[i] = Temp[0]
-      Swap +=1
-    }
-
-    if (i+1 === tab.length-1){
-      if (Swap === 0) {
-        break
-      }
-      else{
-        i-=tab.length-1
-        Swap=0
-      }
-    }
-  }
-  return tab;
-};
-
-const priceProduct = [];
-for (const product of marketplace){
-  priceProduct.push(product.price);
-};
-
 console.log("TODO N°4");
+console.log("Tri par prix")
+console.log(sortPrice(marketplace)) ;
 
-const sortedPriceProduct = sortPrice(priceProduct);
-console.log(sortedPriceProduct) ;
-console.log("Sans utiliser la fonction sort")
-console.log(sortPrice2(priceProduct)) ;
+
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
@@ -125,34 +95,14 @@ console.log(sortPrice2(priceProduct)) ;
 console.log("TODO N°5");
 
 function sortDate (tab) {
-  var Swap = 0;
-  for (var i = 0; i<tab.length-1;i++){
-    if (tab[i+1]>tab[i]){
-      let Temp = [tab[i+1],tab[i]]
-      tab[i+1] = Temp [1]
-      tab[i] = Temp[0]
-      Swap +=1
-    }
-    if (i+1 === tab.length-1){
-      if (Swap === 0) {
-        break
-      }
-      else{
-        i-=tab.length-1
-        Swap=0
-      }
-    }
-  }
-  return tab;
+  tab.sort(function compare(x,y){
+    return x.released < y.released;
+  });
+  return(tab);
 }
 
-const dateProduct = [];
-for (const product of marketplace){
-  dateProduct.push(product.released);
-};
-
 console.log("Du plus recent au plus vieux") ;
-console.log(sortDate(dateProduct)) ;
+console.log(sortDate(marketplace)) ;
 
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
@@ -230,21 +180,26 @@ console.log(brands.hast.length);
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+console.log("TODO N°9");
+const brands_price={
+  'panafrica': sortPrice(brands.panafrica.reverse()),
+  'loom':sortPrice(brands.loom).reverse(),
+  'hast':sortPrice(brands.hast).reverse(),
+}
+console.log(brands_price);
 
-/*brands.panafrica.forEach((produit) => 
-{
-   produit.price.sort(function compare(x,y){
-    return x- y
-  });
-});*/
-console.log(sortDate(brands.panafrica));
-console.log(sortDate(brands.loom));
 
 
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
 console.log("TODO N°10");
+const brands_date={
+  'panafrica': sortDate(brands.panafrica.reverse()),
+  'loom':sortDate(brands.loom).reverse(),
+  'hast':sortDate(brands.hast).reverse(),
+}
+console.log(brands_date);
 
 /**
  * 💶
@@ -257,6 +212,24 @@ console.log("TODO N°10");
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
 console.log("TODO N°11");
+const panaPrice = [];
+for (const product of brands_price.panafrica){
+  panaPrice.push(product.price);
+}
+const loomPrice = [];
+for (const product of brands_price.loom){
+  loomPrice.push(product.price);
+}
+const hastPrice = [];
+for (const product of brands_price.hast){
+  hastPrice.push(product.price);
+}
+const brandsP9={
+  'panafrica':panaPrice[Math.floor(panaPrice.length*10/100)],
+  'loom':loomPrice[Math.floor(loomPrice.length*10/100)],
+  'hast':hastPrice[Math.floor(hastPrice.length*10/100)],
+}
+console.log(brandsP9);
 /**
  * 🧥
  * Cool for your effort.
@@ -448,19 +421,42 @@ const COTELE_PARIS = [
 // 🎯 TODO 1: New released products
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
-
+console.log("TODO n°1")
+const newProduct = []
+for (const prod of COTELE_PARIS){
+  if ('2023-01-15'<prod.released){
+    newProduct.push(prod);
+  }
+}
+console.log(newProduct)
+if (newProduct != null){
+  console.log(true)
+}
 // 🎯 TODO 2: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
 // // A reasonable price if all the products are less than 100€
-
+console.log("TODO n°2")
+for (const prod of COTELE_PARIS){
+  if (100>prod.price){
+    console.log(true);
+    break;
+  }
+}
 // 🎯 TODO 3: Find a specific product
 // 1. Find the product with the uuid `2b9a47e3-ed73-52f6-8b91-379e9c8e526c`
 // 2. Log the product
-
+console.log("TODO n°3")
+var product;
+for (const prod of COTELE_PARIS){
+  if (prod.uuid='2b9a47e3-ed73-52f6-8b91-379e9c8e526c'){
+    product=prod;
+  }
+}
+console.log(product);
 // 🎯 TODO 4: Delete a specific product
 // 1. Delete the product with the uuid `2b9a47e3-ed73-52f6-8b91-379e9c8e526c`
 // 2. Log the new list of product
-
+console.log(COTELE_PARIS.filter(function(value, index, arr){ return value!=product}))
 // 🎯 TODO 5: Save the favorite product
 // We declare and assign a variable called `blueJacket`
 let blueJacket = {
@@ -498,7 +494,16 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
-
+console.log("TODO n°5")
+console.log(blueJacket);
+console.log(jacket);
+// on remarque que c'est le meme produit mais il y a pour le jacket, une key en plus: favorite = true
+jacket=JSON.parse(JSON.stringify( blueJacket))
+jacket.favorite = true;
+console.log('Jacket:')
+console.log(jacket)
+console.log('BlueJacket:')
+console.log(blueJacket)
 /**
  * 🎬
  * The End: last thing to do
@@ -508,3 +513,5 @@ blueJacket = {
 // 🎯 LAST TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+localStorage.setItem('MY_FAVORITE_BRANDS', MY_FAVORITE_BRANDS);
+console.log(localStorage)
