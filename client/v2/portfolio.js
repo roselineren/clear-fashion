@@ -124,9 +124,6 @@ const renderProducts = products => {
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}</span>
-        <label class="add-fav">
-          <input id=${product.uuid} type="checkbox" onchange="manageFavorites(this)"/>
-      </label>
       </div>
     `;
     })
