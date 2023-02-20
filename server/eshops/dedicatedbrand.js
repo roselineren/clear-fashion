@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 /**
  * Parse webpage e-shop
@@ -31,7 +32,7 @@ const parse = data => {
 
       let date = new Date().toISOString().slice(0, 10);
 
-      return {name,link,image,price, date};
+      return {name,link,image,price,date};
     })
     .get();
 };
@@ -59,3 +60,44 @@ module.exports.scrape = async url => {
     return null;
   }
 };
+
+/**
+ * Scrape all the products for a given url page and save as a JSON file
+ * @param  {string}  url
+ * @param  {string}  filename
+ * @return {Promise<boolean>} - true if successful, false otherwise
+ * 
+ */
+
+module.exports.getProducts= async() =>{
+
+  try{ 
+    const response = await fetch ("https://www.dedicatedbrand.com/en/loadfilter");
+    if (response.ok){
+      const body =await response.json();
+      const products = body['products'].filter(
+        data => Object.keys(data).length >0
+      );
+      //console.log(products);
+      data_json =products.map(
+        function(data){
+          const image= data['image'][0];
+          const link = "https://www.dedicatedbrand.com/en/"+ data['canonicalUri'];
+          const name =data['name'];
+          const price =data['price']['priceAsNumber'];
+          const date =new Date().toDateString();
+          return{name, link, image, price, date};
+        }
+      );
+       // Write the data to a JSON file
+       fs.writeFileSync('dedicated.json', JSON.stringify(data_json));
+
+       return true;
+    }
+    console.error(response);
+    return null;
+  } catch(error){
+    console.error(error);
+    return null;
+  }
+}
