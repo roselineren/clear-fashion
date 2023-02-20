@@ -9,30 +9,33 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
 
-  return $('.productList-container .productList')
+  return $('#product-grid')
     .map((i, element) => {
       const name = $(element)
-        .find('.productList-title')
+        .find('.card__heading')
         .text()
+        .split(' ')
+        .filter(function(value, index, self) { 
+            return self.indexOf(value) === index;
+        }).join(' ')
         .trim()
         .replace(/\s/g, ' ');
-      const price = parseInt(
-        $(element)
-          .find('.productList-price')
+      const price =$(element)
+          .find('.price__regular .price-item--regular')
           .text()
-      );
-      const link ='https://www.dedicatedbrand.com'+ $(element)
-        .find('.productList-link').attr('href');
-      
-      const image =
-        $(element)
-        .find('.js-lazy')
-        .attr('data-src')
+          .trim()
+          .replace(/\s/g, ' ')
+          .replace('€', '');
+      const link ='https://shop.circlesportswear.com/'+ $(element)
+          .find('.full-unstyled-link').attr('href');
 
-      let date = new Date().toISOString().slice(0, 10);
-
-      return {name,link,image,price, date};
+      const image = $(element)
+        .find('.motion-reduce')
+        .attr('srcset');
+    let date = new Date().toISOString().slice(0, 10);
+      return {name, price,link,image,date};
     })
+
     .get();
 };
 
