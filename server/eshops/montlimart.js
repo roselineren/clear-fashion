@@ -12,6 +12,7 @@ const parse = data => {
 
   return $('.products-list__block')
     .map((i, element) => {
+      const brand = 'montlimart'
       const name = $(element)
         .find('.text-reset')
         .text()
@@ -81,7 +82,7 @@ module.exports.scrapeAndSave = async (url, filename) => {
       const data = parse(body);
 
       // Write the data to a JSON file
-      fs.writeFileSync(filename, JSON.stringify(data));
+      fs.writeFileSync(filename, JSON.stringify(data,null,2));
 
       return true;
     }

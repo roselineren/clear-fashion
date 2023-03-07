@@ -12,6 +12,7 @@ const parse = data => {
 
   return $('.productList-container .productList')
     .map((i, element) => {
+      const brand = 'dedicated';
       const name = $(element)
         .find('.productList-title')
         .text()
@@ -32,7 +33,7 @@ const parse = data => {
 
       let date = new Date().toISOString().slice(0, 10);
 
-      return {name,link,image,price,date};
+      return {brand,name,link,image,price,date};
     })
     .get();
 };
@@ -81,16 +82,17 @@ module.exports.getProducts= async() =>{
       //console.log(products);
       data_json =products.map(
         function(data){
+          const brand = 'dedicated'
           const image= data['image'][0];
           const link = "https://www.dedicatedbrand.com/en/"+ data['canonicalUri'];
           const name =data['name'];
           const price =data['price']['priceAsNumber'];
           const date =new Date().toDateString();
-          return{name, link, image, price, date};
+          return{brand,name, link, image, price, date};
         }
       );
        // Write the data to a JSON file
-       fs.writeFileSync('dedicated.json', JSON.stringify(data_json));
+       fs.writeFileSync('dedicated.json', JSON.stringify(data_json,null, 2));
 
        return true;
     }

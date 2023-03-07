@@ -1,18 +1,30 @@
 const fetch = require('node-fetch');
-const cheerio = require('cheerio');
 const fs = require('fs');
+const cheerio = require('cheerio');
 
 /**
  * Parse webpage e-shop
  * @param  {String} data - html response
  * @return {Array} products
  */
+
+const parse2 = allData => {
+  const $ = cheerio.load(allData);
+
+  return $('.header__menu-item')
+  .map((i,element) => {
+    const link = 'https://shop.circlesportswear.com/'+ $(element)
+    .find('.link').attr('href');
+    return {link};
+  })
+}
 const parse = data => {
   const $ = cheerio.load(data);
 
-  return $('#product-grid')
+  return $('.product-grid-container .grid__item')
     .map((i, element) => {
-      const name = $(element)
+        const brand = 'circlesportswear'
+        const name = $(element)
         .find('.card__heading')
         .text()
         .split(' ')
@@ -32,11 +44,10 @@ const parse = data => {
 
       const image = $(element)
         .find('.motion-reduce')
-        .attr('srcset');
+        .attr('srcset').split(',')[0];
     let date = new Date().toISOString().slice(0, 10);
-      return {name, price,link,image,date};
+      return {brand,name, price,link,image,date};
     })
-
     .get();
 };
 
@@ -46,52 +57,50 @@ const parse = data => {
  * @return {Array|null}
  */
 module.exports.scrape = async url => {
-  try {
-    const response = await fetch(url);
-
-    if (response.ok) {
-      const body = await response.text();
-
-      return parse(body);
+    try {
+      const response = await fetch(url);
+  
+      if (response.ok) {
+        const body = await response.text();
+  
+        return parse2(body);
+      }
+  
+      console.error(response);
+  
+      return null;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
-
-    console.error(response);
-
-    return null;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
-/**
- * Scrape all the products for a given url page and save as a JSON file
- * @param  {string}  url
- * @param  {string}  filename
- * @return {Promise<boolean>} - true if successful, false otherwise
- * 
- */
-
-module.exports.scrapeAndSave = async (url, filename) => {
-  try {
-    const response = await fetch(url);
-
-    if (response.ok) {
-      const body = await response.text();
-
-      const data = parse(body);
-
-      // Write the data to a JSON file
-      fs.writeFileSync(filename, JSON.stringify(data));
-
-      return true;
+  };
+  
+  /**
+   * Scrape all the products for a given url page and save as a JSON file
+   * @param  {string}  url
+   * @param  {string}  filename
+   * @return {Promise<boolean>} - true if successful, false otherwise
+   * 
+   */module.exports.scrapeAndSave = async (url, filename) => {
+    try {
+      const response = await fetch(url);
+  
+      if (response.ok) {
+        const body = await response.text();
+  
+        const data = parse(body);
+  
+        // Write the data to a JSON file
+        fs.writeFileSync(filename, JSON.stringify( data,null , 2));
+  
+        return true;
+      }
+  
+      console.error(response);
+  
+      return false;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
-
-    console.error(response);
-
-    return false;
-  } catch (error) {
-    console.error(error);
-    return false;
   }
-};

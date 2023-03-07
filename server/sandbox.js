@@ -11,15 +11,15 @@ const circlesportswear = require('./eshops/circlesportswear')
 //https://shop.circlesportswear.com/collections/collection-homme 
 
 
-async function sandbox (eshop = 'https://shop.circlesportswear.com/collections/collection-homme') {
+async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/loadfilter') {
   try {
     console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
 
     //const products = await dedicatedbrand.scrape(eshop);
-    //const products = await dedicatedbrand.getProducts();
-    //const products = await montlimart.scrapeAndSave(eshop,'montimart.json');
-    const products = await circlesportswear.scrapeAndSave(eshop,'circlesportswear.json');
-    
+    const products = await dedicatedbrand.getProducts();
+    //const products = await montlimart.scrapeAndSave(eshop,'montlimart.json');
+    //const products = await circlesportswear.scrapeAndSave(eshop,'circlesportswear2.json');
+    //const products = await circlesportswear.scrape(eshop);
     console.log(products);
     console.log('done');
     process.exit(0);
