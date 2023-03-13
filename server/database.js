@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const products1 = require('./dedicated.json');
-const products2 = require('./montlimart.json');
+const products2 = require('./montlimart2.json');
 const products3 = require('./circlesportswear2.json');
 
 const products = products1.concat(products2,products3);

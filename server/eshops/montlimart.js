@@ -37,7 +37,7 @@ const parse = data => {
 
       let date = new Date().toISOString().slice(0, 10);
 
-      return {name, link, image , price, date};
+      return {brand, name, link, image , price, date};
     })
     .get();
 };
