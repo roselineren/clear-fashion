@@ -24,9 +24,9 @@ app.use(BodyParser.urlencoded({ extended: true }));
 
 var database, collection;
 
-/*app.get('/products', (request, response) => {
+app.get('/products', (request, response) => {
   response.send({'ack': true});
-});*/
+});
 
 /*app.get("/products/:id", (request, response) => {
   collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
@@ -38,7 +38,7 @@ var database, collection;
 });*/
 
 
-app.get('/products/search', (request, response) => {
+/*app.get('/products/search', (request, response) => {
   const { limit = 12, brand = 'All_brands', price = 10000 } = request.query;
   const query = {
     "brand": brand !== "All_brands" ? brand : { $exists: true }, // Filter by brand if specified, otherwise return all brands
@@ -48,10 +48,10 @@ app.get('/products/search', (request, response) => {
     if (err) throw err;
     response.send(result);
   });
-});
+});*/
 
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
   MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
       if(error) {
           throw error;
@@ -60,9 +60,9 @@ app.listen(PORT, () => {
       collection = database.collection("products");
       console.log("Connected to `" + DATABASE_NAME + "`!");
   });
-});
+});*/
 
-//app.listen(PORT);
+app.listen(PORT);
 
-//console.log(`📡 Running on port ${PORT}`);
+console.log(`📡 Running on port ${PORT}`);
 
