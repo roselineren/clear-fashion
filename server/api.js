@@ -35,6 +35,19 @@ app.listen(PORT, () => {
   console.log(`📡 Running on port ${PORT}`);
 });
 
+app.get('/brands', async (request, response) => {
+  try{
+    const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+    const db =  client.db(MONGODB_DB_NAME)
+    const collection = db.collection('products');
+    const result = await collection.distinct('brand');
+    response.send({result : result});
+    client.close();
+  } catch(e){
+    response.send({error : "could not retrieve brands"});  
+  }
+})
+
 app.get('/products/search', async (request, response) => {
   try{
     const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});

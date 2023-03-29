@@ -42,9 +42,7 @@ async function run() {
     const now = new Date();
     const twoWeeksAgo = new Date(now.getTime() - (14 * 24 * 60 * 60 * 1000));
     const filter_2weeks=await collection.find({"date":{$gt: twoWeeksAgo.toISOString().slice(0, 10)}}).toArray();
-    console.log(filter_2weeks);
-
-
+    //console.log(filter_2weeks);
 
   } catch (e) {
     console.error(e);

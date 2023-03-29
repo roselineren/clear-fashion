@@ -1,0 +1,25 @@
+body{
+    background-color: #EAF5F6;
+}
+
+h1 {
+    text-align: center; 
+    color: #02202A; 
+    font-family: cursive;
+}
+
+.horDiv {
+    background-color: #02202A;
+    margin: 20;
+    display: inline-block;
+}
+
+.page-label {
+    color:#EAF5F6;
+}
+
+section {
+    display:grid;
+    justify-content: center;
+    align-content: center;
+}
