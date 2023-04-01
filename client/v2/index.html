@@ -7,86 +7,100 @@
   </head>
   <body>
     <h1>Clear fashion</h1>
-    
     <section id="options">
-      <div class="horDiv" id="show" >
-        <label class="page-label" for="show-select">Show:</label>
+      <br>
+      <br>
+      <div  class="horDiv" id="show">
+        <label for="show-select" style="color:#EAF5F6;" >Show:</label>
         <select name="show" id="show-select">
-          <option value="12">12</option>
-          <option value="24">24</option>
-          <option value="48">48</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="500">500</option>
+          <option value="3000">All</option>
         </select>
       </div>
       <div class="horDiv" id="page">
-        <label class="page-label" for="page-select">Go to page:</label>
-        <select name="page" id="page-select"> </select>
+        <label for="page-select" style="color:#EAF5F6;">Go to page:</label>
+        <select name="page" id="page-select"> 
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
       </div>
-      <div id="filters">
-        <div id = 'released'>
-          <input type="checkbox" id="released-check" name="released-check" checked>
-          <span>By recently released</span>
-        </div>
-
-        <div id="reasonablePrice">
-          <label for="reasonablePriceSelect">By reasonable price</label>
-        <select name="reasonable-price" id="reasonablePriceSelect">
+      <div id="filters" class="horDiv">
+        <label style="color:#EAF5F6;" for="reasonable-price-select">By reasonable price</label>
+        <select name="reasonable-price" id="reasonable-price-select">
           <option value="No">No</option>
           <option value="Yes">Yes</option>
         </select>
-        </div>
-
-        <div id="brand">
-          <label for="brand-select">By brands:</label>
-          <select name="brand" id="brand-select"> </select>
-        </div>
-        <div id ='favoriteProduct'>
-          <label for="favorite-select">By favorite items</label>
-          <select name="favorite" id="favorite-select">
+        <label style="color:#EAF5F6;" for="recent-select">By recently released</label>
+        <select name="recent" id="recent-select"> 
           <option value="No">No</option>
           <option value="Yes">Yes</option>
-          </select>
+        </select>
+        <label style="color:#EAF5F6;" for="favorite-select">Favorites</label>
+        <select name="favorite" id="favorite-select">
+          <option value="Don't show">Don't show</option>
+          <option value="Show">Show</option>
+        </select>
+        <div id="brand">
+          <label style="color:#EAF5F6;" for="brand-select">By brands:</label>
+          <select name="brand" id="brand-select"> </select>
         </div>
       </div>
-      <div id="sort">
-        <label for="sort-select">Sort:</label>
+      <div id="sort" class="horDiv">
+        <label style="color:#EAF5F6" for="sort-select">Sort:</label>
         <select name="sort" id="sort-select">
           <option value="price-asc">Cheaper</option>
           <option value="price-desc">Expensive</option>
           <option value="date-asc">Recently released</option>
           <option value="date-desc">Anciently released</option>
         </select>
-
       </div>
+      
     </section>
+    
+    <br>
+    <br>
     <section id="indicators">
-      <h2>Indicators</h2>
-      <div>
-        <span>Number of products</span>
-        <span id="nbProducts">0</span>
-      </div>
-      <div>
-        <span>Number of brands</span>
-        <span id="nbBrands">0</span>
-      </div>
-      <div>
-        <span>Number of new products</span>
-        <span id="nbNewProducts">0</span>
-      </div>
-      <div>
-        <span>p50 price value</span>
-        <span id="p50">0</span>
-      </div>
-      <div>
-        <span>p90 price value</span>
-        <span id="p90">0</span>
-      </div>
-      <div>
-        <span>p95 price value</span>
-        <span id="p95">0</span>
-      </div>
-      <div>
-        <span>Last released date</span>
-        <span id = "latestRelease">2020-01-01</span>
+      <div class = "indicator-div">
+        <h2 style="text-align: center;">Indicators</h2>
+        <div style="margin: 5;">
+          <span style="font-weight: bold;">Number of products: </span>
+          <span id="nbProducts">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">Number of brands: </span>
+          <span id="nbBrands">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">Number of new products: </span>
+          <span id="nbNewProducts">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">p50 price value: </span>
+          <span id="p50">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">p90 price value: </span>
+          <span id="p90">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">p95 price value: </span>
+          <span id="p95">0</span>
+        </div>
+        <div>
+          <span style="font-weight: bold;">Last released date: </span>
+          <span id = "latestRelease">2020-01-01</span>
+        </div>
       </div>
     </section>
     <section id="products"></section>

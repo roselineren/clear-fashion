@@ -23,3 +23,89 @@ section {
     justify-content: center;
     align-content: center;
 }
+
+.indicator-div{
+    width: 280px;
+    height: 230px; /* set a fixed height */
+    box-shadow: 0px 0px 5px #02202A;
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px 1%;
+    background-color: #f6eaf2;
+}
+.product {
+    width: 30%;
+    height: 400px; /* set a fixed height */
+    box-shadow: 0px 0px 5px #02202A;
+    border-radius: 25px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    margin: 10px 1%;
+    background-color: white;
+    
+}
+
+a[href] {
+    color: #02202A;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.product-name {
+    font-size: 20px;
+    height: 50px;
+    overflow: hidden;
+    display: block; /* change display property to block */
+    margin-top: 10px; /* add some spacing between brand and product name */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #02202A;
+}
+
+.brand-name {
+    font-size: 16px;
+    height: 22px;
+    overflow: hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #02202A;
+}
+
+.product .details span{
+    display: block;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.product .image{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    height: 60%;
+    object-fit: contain;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+
+  .add-fav input[type="checkbox"] {
+    display: none;
+  }
+  .add-fav {
+    font-size: 15px;
+    color: #550373;
+    display: block;
+    text-align: end;
+    line-height: 1;
+  }
+  .add-fav input:checked + i {
+    color: rgb(233, 59, 138);
+  }
+  .add-fav i.heart {
+    font-size: 30px;
+    color: #54196f;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
+  }
