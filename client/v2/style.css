@@ -18,10 +18,23 @@ h1 {
     color:#EAF5F6;
 }
 
-section {
-    display:grid;
+.container {
+    display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+.section-option{
+    width: 600px;
+    height: 230px; /* set a fixed height */
+    box-shadow: 0px 0px 5px #02202A;
+    border-radius: 25px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f6eaf2;
 }
 
 .indicator-div{
@@ -58,8 +71,8 @@ a[href] {
     font-size: 20px;
     height: 50px;
     overflow: hidden;
-    display: block; /* change display property to block */
-    margin-top: 10px; /* add some spacing between brand and product name */
+    display: block; 
+    margin-top: 10px; 
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     color: #02202A;
@@ -94,18 +107,21 @@ a[href] {
     display: none;
   }
   .add-fav {
-    font-size: 15px;
-    color: #550373;
+    font-size: 30px;
+    color: grey;
     display: block;
     text-align: end;
     line-height: 1;
+    stroke: black;
   }
   .add-fav input:checked + i {
     color: rgb(233, 59, 138);
   }
   .add-fav i.heart {
     font-size: 30px;
-    color: #54196f;
+    color: grey;
     transition: color 0.2s ease-in-out;
     cursor: pointer;
+    border-color: black;
+    border-width: 2;
   }

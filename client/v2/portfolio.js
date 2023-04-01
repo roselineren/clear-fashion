@@ -297,7 +297,7 @@ else {
  * By favorite products
  */
 selectFavorite.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  const products = await fetchProducts('All');
 
   setCurrentProducts(products);
 
