@@ -5,7 +5,9 @@ body{
 h1 {
     text-align: center; 
     color: #02202A; 
-    font-family: cursive;
+    font-family :Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 50px;
 }
 
 .horDiv {
